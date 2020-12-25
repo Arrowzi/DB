@@ -1,0 +1,121 @@
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+th {
+    padding: 15px;
+}
+
+table {
+    margin-bottom: 7rem;
+}
+.sidenav {
+    height: 100%;
+    width: 250px;
+    position: fixed;
+    z-index: 1;
+    top: 0;
+    left: 0;
+    background-color: #000000;
+    display: block;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #3b3939;
+    display: block;
+    transition: 0.3s;
+    text-transform: uppercase;
+}
+
+.sidenav a:hover {
+    color: #ffffff;
+}
+.content{
+    padding-left: 300px;
+    background-color: #c8905c;
+    height: 100%;
+}
+.table__selector {
+    text-transform: uppercase;
+    text-decoration: none;
+    color: inherit;
+    font-size: 30px;
+    display: block;
+
+    margin: 5px;
+    transition: transform 0.2s linear;
+}
+.table__selector:hover {
+    color: rgb(0, 0, 0);
+    transform: translateX(50px) scale(1.1);
+}
+.operations {
+    font-size: 20px;
+}
+
+.operations > form {
+    margin: 5px;
+}
+
+.operations span {
+    line-height: 2;
+}
+
+.operation {
+    margin: 20px 0;
+}
+
+.operation input, select, input[type ="number"] {
+    -webkit-appearance: none;
+    border: 1px solid black;
+    font-size: inherit;
+}
+
+.operation input[type='text'], input[type='email'], input[type='password'], input[type='date'], input[type='number'], textarea, select {
+    padding: 3px;
+    color: inherit;
+    background-color: #c8905c;
+}
+input[type="text"]{
+    width: 150px;
+}
+
+input[type="number"]{
+    width: 80px;
+}
+.back_button, input[type="submit"] {
+    padding: 5px;
+    text-decoration: none;
+    color: inherit;
+    font-size: 15px;
+    text-transform: uppercase;
+    border: 1px solid rgb(11, 11, 12);
+    background-color: inherit;
+}
+
+.back_button:hover, input[type="submit"]:hover {
+    color: #ffffff;
+    border-color: #08090a;
+    background-color: black;
+
+}
+body{
+    margin: 0;
+    padding: 0;
+}
+input[type="tel"]{
+    background-color: #c8905c;
+}
+
+
+
