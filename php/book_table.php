@@ -45,7 +45,7 @@ echo $buffer;
             const current_host = window.location.host;
             const id = document.getElementById("id_book_selector").value;
             const request = async () => {
-                const response = await fetch(`http://${current_host}/get_book_by_id.php?id=${id}`);
+                const response = await fetch(`${location.protocol}//${current_host}/get_book_by_id.php?id=${id}`);
                 const json = await response.json();
                 document.getElementById("new_book_title").value = json["title"];
                 document.getElementById("new_public_date").value = json["public_date"];
