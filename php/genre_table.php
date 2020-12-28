@@ -1,6 +1,7 @@
 <?
 ob_start();
 include "./html/top.html";
+include "Utils.php";
 $buffer = ob_get_contents();
 ob_get_clean();
 
@@ -17,7 +18,7 @@ echo $buffer;
         </tr>
 
         <?
-        $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+        $db = Utils::getPDO();
         foreach ($db->query("SELECT id, title FROM genre;") as $row) {
             echo "<tr>
             <th>{$row['id']}</th>
@@ -49,7 +50,7 @@ echo $buffer;
                 <b>Изменить название жанра:</b>
                     <select name="id_genre_selector" required>
                     <?
-                    $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                    $db = Utils::getPDO();
                     foreach ($db->query("SELECT id, title FROM genre;") as $row) {
                         echo "<option value='{$row['id']}'>{$row['id']}: {$row['title']}</option>";
                     }
@@ -69,7 +70,7 @@ echo $buffer;
                 <b>Удалить жанр:</b>
             <select name="id_genre_selector" required>
                 <?
-                $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                $db = Utils::getPDO();
                 foreach ($db->query("SELECT id, title FROM genre;") as $row) {
                     echo "<option value='{$row['id']}'>{$row['id']}: {$row['title']}</option>";
                 }

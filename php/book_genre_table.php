@@ -1,6 +1,7 @@
 <?
 ob_start();
 include "./html/top.html";
+include 'Utils.php';
 $buffer = ob_get_contents();
 ob_get_clean();
 
@@ -19,7 +20,7 @@ echo $buffer;
         </tr>
         <?
         $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
-        foreach ($db->query("select b.id as book_id,b.title as book_title,group_concat(g.id) as genre_id, group_concat(g.title)as genre_title from book_genre join book b on b.id = book_genre.book_id join genre g on g.id = book_genre.genre_id group by b.id, b.title;") as $row) {
+        foreach ($db->query("select b.id as book_id,b.title as book_title,group_concat(g.id) as genre_id, group_concat(g.title)as genre_title from book_genre join book b on b.id = book_genre.book_id join genre g on g.id = book_genre.genre_id group by b.id, b.title order by b.id;") as $row) {
             echo "<tr>
             <th>{$row['book_id']}</th>
             <th>{$row['book_title']}</th>
@@ -39,7 +40,7 @@ echo $buffer;
             Добавить жанр
                 <select name="genre_id" required>
                     <?
-                    $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                    $db = Utils::getPDO();
                     foreach ($db->query("SELECT id, title FROM genre;") as $row) {
                         echo "<option value='{$row['id']}'>{$row['title']}</option>";
                     }
@@ -48,9 +49,9 @@ echo $buffer;
                 книге
                 <select name="book_id" required>
                     <?
-                    $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
-                    foreach ($db->query("SELECT id, title FROM book;") as $row) {
-                        echo "<option value='{$row['id']}'>{$row['title']}</option>";
+                    $db = Utils::getPDO();
+                    foreach ($db->query("SELECT id, title FROM book order by id;") as $row) {
+                        echo "<option value='{$row['id']}'>{$row['id']}: {$row['title']}</option>";
                     }
                     ?>
                 </select>
@@ -67,16 +68,16 @@ echo $buffer;
             У книги
             <select name="id_book_selector" required>
                 <?
-                $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
-                foreach ($db->query("SELECT id, title FROM book;") as $row) {
-                    echo "<option value='{$row['id']}'>{$row['title']}</option>";
+                $db = Utils::getPDO();
+                foreach ($db->query("SELECT id, title FROM book order by id;") as $row) {
+                    echo "<option value='{$row['id']}'>{$row['id']}: {$row['title']}</option>";
                 }
                 ?>
             </select>
                 удалить жанр
                 <select name="id_genre_selector" required>
                 <?
-                $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                $db = Utils::getPDO();
                 foreach ($db->query("SELECT id, title FROM genre;") as $row) {
                     echo "<option value='{$row['id']}'>{$row['title']}</option>";
                 }

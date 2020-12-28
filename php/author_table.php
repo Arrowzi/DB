@@ -1,6 +1,7 @@
 <?
 ob_start();
 include "./html/top.html";
+include "Utils.php";
 $buffer = ob_get_contents();
 ob_get_clean();
 
@@ -19,7 +20,7 @@ echo $buffer;
         </tr>
 
         <?
-        $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+        $db = Utils::getPDO();
         foreach ($db->query("SELECT id, fname, sname, dob FROM author;") as $row) {
             echo "<tr>
             <th>{$row['id']}</th>
@@ -57,7 +58,7 @@ echo $buffer;
                 <b>Изменить имя и фaмилию автора:</b>
                     <select name="id_author_selector" required>
                     <?
-                    $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                    $db = Utils::getPDO();
                      foreach ($db->query("SELECT id, fname, sname FROM author;") as $row) {
                     echo "<option value='{$row['id']}'>{$row['id']}: {$row['fname']} {$row['sname']}</option>";
                      }
@@ -80,7 +81,7 @@ echo $buffer;
                 <b>Изменить дату рождения автора:</b>
                 <select name="id_author_selector" required>
                   <?
-                  $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                  $db = Utils::getPDO();
                   foreach ($db->query("SELECT id, fname, sname FROM author;") as $row) {
                       echo "<option value='{$row['id']}'>{$row['id']}: {$row['fname']} {$row['sname']}</option>";
                   }
@@ -100,7 +101,7 @@ echo $buffer;
                 <b>Удалить автора:</b>
             <select name="id_author_selector" required>
                 <?
-                $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                $db = Utils::getPDO();
                 foreach ($db->query("SELECT id, fname, sname FROM author;") as $row) {
                     echo "<option value='{$row['id']}'>{$row['id']}: {$row['fname']} {$row['sname']}</option>";
                 }

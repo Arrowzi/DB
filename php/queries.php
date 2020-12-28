@@ -1,6 +1,7 @@
 <?
 ob_start();
 include "./html/top.html";
+include "Utils.php";
 $buffer = ob_get_contents();
 ob_get_clean();
 
@@ -14,7 +15,7 @@ echo $buffer;
             1) Список всех книг по автору:
             <select name="id_author_selector" required>
                 <?
-                $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                $db = Utils::getPDO();
                 foreach ($db->query("SELECT id, fname, sname FROM author;") as $row) {
                     echo "<option value='{$row['id']}'>{$row['id']}: {$row['fname']} {$row['sname']}</option>";
                 }
@@ -50,7 +51,7 @@ echo $buffer;
             4) Вывод всех книг опеределённого жанра:
             <select name="all_genre" required>
                 <?
-                $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                $db = Utils::getPDO();
                 foreach ($db->query("SELECT id, title FROM genre;") as $row) {
                     echo "<option value='{$row['id']}'>{$row['id']}: {$row['title']}</option>";
                 }
@@ -62,7 +63,14 @@ echo $buffer;
     <div class="operations">
         <form method="post" action="qBookYear.php">
             5) Вывод всех книг вышедших в определённом году:
-            <input type="number" min="1950" max="2020" step="1" required>
+            <select name="year" required>
+                <?
+                   $db = Utils::getPDO();
+                   foreach ($db->query("SELECT distinct year(public_date) as pd from book order by year(public_date);") as $row){
+                       echo  "<option value='{$row['pd']}'>{$row['pd']}</option>";
+                   }
+                ?>
+            </select>
             <button type="submit" name="book_year" class="back_button">Ок</button>
         </form>
     </div>
@@ -71,7 +79,7 @@ echo $buffer;
             6) Вывод всех заказов по жанру книги:
             <select name="all_genre" required>
                 <?
-                $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                $db = Utils::getPDO();
                 foreach ($db->query("SELECT id, title FROM genre;") as $row) {
                     echo "<option value='{$row['id']}'>{$row['id']}: {$row['title']}</option>";
                 }
@@ -81,11 +89,11 @@ echo $buffer;
         </form>
     </div>
     <div class="operations">
-        <form action="qSumPrice.php">
+        <form method="post" action="qSumPrice.php">
             7) Вывод суммы всех покупок пользовтеля:
             <select name="client_selector" required>
                 <?
-                $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                $db = Utils::getPDO();
                 foreach ($db->query("SELECT id, fname, sname FROM client;") as $row) {
                     echo "<option value='{$row['id']}'>{$row['id']}: {$row['fname']} {$row['sname']}</option>";
                 }

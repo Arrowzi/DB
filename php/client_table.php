@@ -1,6 +1,7 @@
 <?
 ob_start();
 include "./html/top.html";
+include "Utils.php";
 $buffer = ob_get_contents();
 ob_get_clean();
 
@@ -21,7 +22,7 @@ echo $buffer;
         </tr>
 
         <?
-        $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+        $db = Utils::getPDO();
         foreach ($db->query("SELECT id, fname, sname, phone_number, email, c_address FROM client;") as $row) {
             echo "<tr>
             <th>{$row['id']}</th>
@@ -66,7 +67,7 @@ echo $buffer;
                 <b>Изменить имя и фамилию клиента:</b>
                     <select name="id_client_selector" required>
                     <?
-                    $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                    $db = Utils::getPDO();
                     foreach ($db->query("SELECT id, fname, sname FROM client;") as $row) {
                         echo "<option value='{$row['id']}'>{$row['id']}: {$row['fname']} {$row['sname']}</option>";
                     }
@@ -87,7 +88,7 @@ echo $buffer;
                 <b>Изменить номер телефона клиента:</b>
                     <select name="id_client_selector" required>
                     <?
-                    $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                    $db = Utils::getPDO();
                     foreach ($db->query("SELECT id, fname, sname FROM client;") as $row) {
                         echo "<option value='{$row['id']}'>{$row['id']}: {$row['fname']} {$row['sname']}</option>";
                     }
@@ -107,7 +108,7 @@ echo $buffer;
                 <b>Изменить адрес электронной почты клиента:</b>
                     <select name="id_client_selector" required>
                     <?
-                    $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                    $db = Utils::getPDO();
                     foreach ($db->query("SELECT id, fname, sname FROM client;") as $row) {
                         echo "<option value='{$row['id']}'>{$row['id']}: {$row['fname']} {$row['sname']}</option>";
                     }
@@ -127,7 +128,7 @@ echo $buffer;
                 <b>Изменить адрес проживания клиента:</b>
                     <select name="id_client_selector" required>
                     <?
-                    $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                    $db = Utils::getPDO();
                     foreach ($db->query("SELECT id, fname, sname FROM client;") as $row) {
                         echo "<option value='{$row['id']}'>{$row['id']}: {$row['fname']} {$row['sname']}</option>";
                     }
@@ -148,7 +149,7 @@ echo $buffer;
                 <p><b>Удалить клиента:</b>
             <select name="id_client_selector" required>
                 <?
-                $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                $db = Utils::getPDO();
                 foreach ($db->query("SELECT id, fname, sname FROM client;") as $row) {
                     echo "<option value='{$row['id']}'>{$row['id']}: {$row['fname']} {$row['sname']}</option>";
                 }

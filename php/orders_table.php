@@ -1,6 +1,7 @@
 <?
 ob_start();
 include "./html/top.html";
+include "Utils.php";
 $buffer = ob_get_contents();
 ob_get_clean();
 
@@ -12,14 +13,14 @@ echo $buffer;
     <h3>Список заказов</h3>
     <table>
         <tr>
-            <th>id</th>
+            <th>№ заказа</th>
             <th>Дата создания заказа</th>
             <th>Состояние</th>
             <th>Заказчик</th>
         </tr>
 
         <?
-        $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+        $db = Utils::getPDO();
         $state=['operating'=>'в обработке','canceled'=>'отменён','paid'=>'оплачен', 'done'=>'подтверждён'];
         foreach ($db->query("SELECT o.id as id, create_date, o_state, fname, sname FROM orders o join client c on c.id = o.id_client;") as $row) {
             echo "<tr>
@@ -42,7 +43,7 @@ echo $buffer;
             Заказчик
             <select name="orders_client" required>
                 <?
-                $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                $db = Utils::getPDO();
                 foreach ($db->query("SELECT id, fname, sname FROM client;") as $row) {
                     echo "<option value='{$row['id']}'>{$row['id']}: {$row['fname']} {$row['sname']}</option>";
                 }
@@ -70,7 +71,7 @@ echo $buffer;
                 <b>Изменить заказ №:</b>
                     <select name="id_orders_selector" required>
                     <?
-                    $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                    $db = Utils::getPDO();
                     foreach ($db->query("SELECT id FROM orders;") as $row) {
                         echo "<option value='{$row['id']}'>{$row['id']}</option>";
                     }
@@ -97,7 +98,7 @@ echo $buffer;
                 <b>Изменить заказчика у заказа №:</b>
                     <select name="id_orders_selector" required>
                     <?
-                    $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                    $db = Utils::getPDO();
                     foreach ($db->query("SELECT id FROM orders;") as $row) {
                         echo "<option value='{$row['id']}'>{$row['id']}</option>";
                     }
@@ -106,7 +107,7 @@ echo $buffer;
                 на
                     <select name="new_client" required>
                 <?
-                $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                $db = Utils::getPDO();
                 foreach ($db->query("SELECT id, fname, sname FROM client;") as $row) {
                     echo "<option value='{$row['id']}'>{$row['id']}: {$row['fname']} {$row['sname']}</option>";
                 }
@@ -123,7 +124,7 @@ echo $buffer;
                 <b>Удалить заказ №:</b>
             <select name="id_orders_selector" required>
                 <?
-                $db = new PDO('mysql:host=db;dbname=bookmarket', 'devuser', 'devpass');
+                $db = Utils::getPDO();
                 foreach ($db->query("SELECT id FROM orders;") as $row) {
                     echo "<option value='{$row['id']}'>{$row['id']}</option>";
                 }

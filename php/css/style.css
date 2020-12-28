@@ -42,7 +42,8 @@ table {
 }
 .content{
     padding-left: 300px;
-    background-color: #c8905c;
+    padding-top: 30px;
+    background-color: #ffffff;
     height: 100%;
 }
 .table__selector {
@@ -84,7 +85,7 @@ table {
 .operation input[type='text'], input[type='email'], input[type='password'], input[type='date'], input[type='number'], textarea, select {
     padding: 3px;
     color: inherit;
-    background-color: #c8905c;
+    background-color: #ffffff;
 }
 input[type="text"]{
     width: 150px;
@@ -114,7 +115,7 @@ body{
     padding: 0;
 }
 input[type="tel"]{
-    background-color: #c8905c;
+    background-color: #ffffff;
 }
 
 

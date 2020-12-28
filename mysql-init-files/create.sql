@@ -44,8 +44,10 @@ CREATE TABLE IF NOT EXISTS orders (
 );
 CREATE TABLE IF NOT EXISTS order_book (
     book_id INT,
-    amount INT DEFAULT 0,
+    amount INT DEFAULT 1,
     FOREIGN KEY (book_id) REFERENCES book(id) ON DELETE CASCADE ON UPDATE CASCADE,
     order_id INT,
     FOREIGN KEY (order_id) REFERENCES orders(id) ON DELETE CASCADE ON UPDATE CASCADE
 );
+
+select b.id as id, b.title as title, public_date, raiting, b_state, amount, price, fname, sname, group_concat(g.title) as genre_title from book b join author a on a.id = b.author_id join book_genre bg on b.id = bg.book_id join genre g on g.id = bg.genre_id where year(b.public_date) = ? group by b.id, b.title, public_date, raiting, b_state, amount, price, fname, sname;
