@@ -102,6 +102,32 @@ echo $buffer;
             <button type="submit" name="sum_price" class="back_button">Ок</button>
         </form>
     </div>
+    <div class="operations">
+        <form method="post" action="qTopYear.php">
+            8) Вывести топ:
+                <input type="number" min="0" max="10000" name="top" required>
+                покупателей по колличеству купленных книг в
+                <select name="month_selector" required>
+                 <?
+                  $db = Utils::getPDO();
+                  $map = ["январе","феврале","марте","апреле","мае","июне","июле","августе","сентябре","октябре","ноябре","декабре"];
+                  foreach ($db->query("SELECT distinct month(create_date) as cd from orders order by month(create_date);") as $row){
+                      echo  "<option value='{$row['cd']}'>{$map[$row['cd']-1]}</option>";
+                   }
+                  ?>
+                </select>
+            2020 года.
+            <button type="submit" name="top_year" class="back_button">Ок</button>
+        </form>
+    </div>
+    <div class="operations">
+        <form method="post" action="qTopAuthor.php">
+            9) Вывести топ:
+            <input type="number" min="0" max="10000" name="top" required>
+            авторов по колличеству написанных книг.
+            <button type="submit" name="top_author" class="back_button">Ок</button>
+        </form>
+    </div>
 
 <?
 include "./html/bottom.html"

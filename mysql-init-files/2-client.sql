@@ -1,7 +1,0 @@
-INSERT INTO bookmarket.client (id, fname, sname, phone_number, email, c_address) VALUES (1, 'Никита', 'Борисов', '88005553535', 'boriska1995.02@gmail.com', 'Рихарда Зорге 38/1 36');
-INSERT INTO bookmarket.client (id, fname, sname, phone_number, email, c_address) VALUES (2, 'Максим', 'Петрович', '2852751', 'max_pro2020@mail.com', 'ул.Пушкина дом 36');
-INSERT INTO bookmarket.client (id, fname, sname, phone_number, email, c_address) VALUES (4, 'Иван', 'Иванов', '32132131321', 'ivi@yandex.ru', 'Ростовская 24/2');
-INSERT INTO bookmarket.client (id, fname, sname, phone_number, email, c_address) VALUES (6, 'Виктория', 'Алексеевна', '89659204058', 'zykeppavah-8277@yopmail.com', 'ул. 8 марта 32/1');
-INSERT INTO bookmarket.client (id, fname, sname, phone_number, email, c_address) VALUES (7, 'Илья', 'Станиславович', '32132131321', 'edifapipp-3689@yopmail.com', 'ул. Новомостовая 13/4');
-INSERT INTO bookmarket.client (id, fname, sname, phone_number, email, c_address) VALUES (8, 'Михаил ', 'Артёмович', '2852751', 'azegujih-4829@yopmail.com', 'ул. Подмастерная 48/2');
-INSERT INTO bookmarket.client (id, fname, sname, phone_number, email, c_address) VALUES (9, 'Михаил', 'Сергеевич', '2852751', 'mozurubuh-3670@yopmail.com', 'ул. Менделеева 45/4');
